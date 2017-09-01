@@ -1,30 +1,39 @@
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Logger;
-import java.io.*;
 
 public class Main{
 	private static final Logger log = Logger.getLogger( Main.class.getName() );
 
 	public static void main(String[] args) {
-		if(args.length != 1)
+		if(args.length != 1)//Checking for the argument e.g test.txt
 		{
-			System.err.println("Invalid command line, exactly one argument required");
+			log.warning("Invalid command line, exactly one argument required");
 			System.exit(1);
 		}
-		File inputFile = new File(args[0]);
-		System.out.println(inputFile.getAbsolutePath());
-		Scanner input = null;
-		try {
-			input = new Scanner(inputFile);
-			System.out.println("HERE");
-		} catch (FileNotFoundException e) {
-			System.err.println("Cannot Find file - \""+args[0]+"\"");
+		
+		File path = new File(args[0]);//Getting path
+		String fileName = path.getAbsolutePath();
+		
+		String[] fileLines = null;
+		try//Opening the file with ReadFile() and reading its contents with openFile()
+		{
+			ReadFile file = new ReadFile(fileName);
+			fileLines = file.openFile();
+		}
+		catch(IOException e)
+		{
+			log.info(e.getMessage());
 			System.exit(1);
 		}
-		//else if(input.)
+		//Printing out the contents to screen as test
+		for(int i = 0; i < fileLines.length; i++)
+		{
+			System.out.println(fileLines[i]);
+		}
+
 		//TODO Read file format
 		//TODO return % RISK
-		input.close();
 		return;
 	}
 }

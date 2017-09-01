@@ -8,6 +8,11 @@ public class ReadFile {
 		this.file_path = file_path; 
 	}
 	
+	/**
+	 * Counts how many lines are in the ReadFile Object
+	 * @return
+	 * @throws IOException
+	 */
 	public int readLines() throws IOException
 	{
 		FileReader fr = new FileReader(file_path);
@@ -22,6 +27,11 @@ public class ReadFile {
 		return numberOfLines;
 	}
 	
+	/**
+	 * Opens the file and reads it
+	 * @return lines in the file
+	 * @throws IOException
+	 */
 	public String[] openFile() throws IOException
 	{
 		FileReader fr = new FileReader(file_path);
@@ -36,5 +46,5 @@ public class ReadFile {
 		fr.close();
 		return textData;
 	}
-	
+
 }
